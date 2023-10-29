@@ -1,16 +1,24 @@
 /** @format */
 'use client';
 
+import { useEffect } from 'react';
+
 export default function Page() {
+	let storage: Record<string, any> = {};
+
+	useEffect(() => {
+		storage = localStorage;
+	}, []);
+
 	function logout() {
-		localStorage.password = '';
-		localStorage.email = '';
-		localStorage.name = '';
+		storage.password = '';
+		storage.email = '';
+		storage.name = '';
 	}
 
 	return (
 		<>
-			<h1>Hallo {localStorage.name}</h1>
+			<h1>Hallo {storage.name}</h1>
 			<form action=".">
 				<button type="submit" onClick={logout}>
 					logout

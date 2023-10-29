@@ -11,14 +11,17 @@ import User from '../models/database';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-	const login = User.authenticate(localStorage);
-
 	const { push } = useRouter();
+	let storage: Record<string, any> = {};
 
 	useEffect(() => {
+		const login = User.authenticate(localStorage);
+
 		if (!login) {
 			push('/login');
 		}
+
+		storage = localStorage;
 	}, []);
 
 	return (
@@ -37,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<div className="flex-dir">
 						<div>Home</div>
 						<div>
-							<a href="/account">{localStorage.name}</a>
+							<a href="/account">{storage.name}</a>
 						</div>
 					</div>
 				</header>
