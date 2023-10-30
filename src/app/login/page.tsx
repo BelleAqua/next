@@ -17,10 +17,14 @@ export default function Page() {
 	}
 
 	return (
-		<form action=".">
-			<input placeholder="email" value={email} type="email" onChange={saveEmail}></input>
-			<input placeholder="password" value={password} type="password" onChange={savePassword}></input>
-			<button type="submit">Login</button>
-		</form>
+		<div className="center" id="form">
+			<form action=".">
+				<input className="login" placeholder="email" value={email} type="email" onChange={saveEmail}></input>
+				<input className="login" placeholder="password" value={password} type="password" onChange={savePassword}></input>
+				<button className="btn" type="submit">
+					Login
+				</button>
+			</form>
+		</div>
 	);
 }

@@ -12,36 +12,39 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	const { push } = useRouter();
-	let storage: Record<string, any> = {};
 
 	useEffect(() => {
 		const login = User.authenticate(localStorage);
 
 		if (!login) {
+			document.getElementById('shortcuts')?.classList.add('hidden');
+
 			push('/login');
 		}
-
-		storage = localStorage;
 	}, []);
 
 	return (
 		<html lang="en">
 			<head>
 				<title>BelleAqua</title>
+				<link rel="icon" href="/favicon.ico" />
 			</head>
 
 			<body className={`${inter.className}`}>
 				<header>
-					<div className="flex-dir">belleaqua</div>
-					<div className="flex-dir">
-						<div>Alert</div>
-						<div>Robaws</div>
+					<div>
+						<a href="https://belleaqua.be">
+							<img className="icon" src="/logos/belleaqua.png" />
+						</a>
 					</div>
-					<div className="flex-dir">
-						<div>Home</div>
-						<div>
-							<a href="/account">{storage.name}</a>
-						</div>
+					<div className="flex-dir" id="shortcuts">
+						<a href=".">
+							<img className="icon" src="/icons/home.png" />
+						</a>
+
+						<a href="/account">
+							<img className="icon" src="/icons/account.png" />
+						</a>
 					</div>
 				</header>
 				<main>{children}</main>
