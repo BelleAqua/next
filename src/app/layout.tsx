@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	const { push } = useRouter();
 
 	useEffect(() => {
-		const login = User.authenticate(localStorage);
+		const login = true; //User.authenticate(localStorage);
 
 		if (!login) {
 			document.getElementById('shortcuts')?.classList.add('hidden');
