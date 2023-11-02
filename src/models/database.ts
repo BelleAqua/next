@@ -7,7 +7,16 @@ config();
 // mongoose.connect(process.env.KEY as string);
 
 export default new (class User {
-	create() {}
+	create() {
+		// const user = mongoose.Schema({
+		// 	name: String,
+		// 	email:String,
+		// 	password: String,
+		// 	roles: [String]
+		// })
+
+		return { name: 'test', email: 'test@belleaqua.be' };
+	}
 
 	find() {}
 
