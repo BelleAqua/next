@@ -73,6 +73,12 @@ form {
 	flex-direction: column;
 }
 
+td,
+th {
+	padding: 8px;
+	text-align: left;
+}
+
 .rel {
 	position: relative;
 }

@@ -1,7 +1,7 @@
 /** @format */
 
-import User from '../../src/models/database';
+import User from '../../schemas/user';
 
 export default async function handler(req: any, res: any) {
-	res.json(User.find());
+	return res.json((await User.find()).map((u) => u));
 }

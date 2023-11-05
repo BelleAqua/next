@@ -14,6 +14,6 @@ const userSchema = new Schema({
 	role: String, // 'gast' || 'gebruiker' || 'admin'
 });
 
-const User = models.User || model('user', userSchema);
+const User = models.users || model('users', userSchema);
 
 export default User;

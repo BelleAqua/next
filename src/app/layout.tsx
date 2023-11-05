@@ -3,24 +3,29 @@
 
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
-import User from '../models/database';
+import { hash } from 'bcrypt';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 	const { push } = useRouter();
 
 	useEffect(() => {
-		const login = true; //User.authenticate(localStorage);
+		fetch('api/user')
+			.then((res) => res.json())
+			.then((users) => {
+				users.map(async (user: any) => {
+					if (user.email !== email && user.password !== (await hash(password, 10))) {
+						document.getElementById('shortcuts')?.classList.add('hidden');
 
-		if (!login) {
-			document.getElementById('shortcuts')?.classList.add('hidden');
-
-			push('/login');
-		}
+						push('/login');
+					}
+				});
+			});
 	}, []);
 
 	return (
