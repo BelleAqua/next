@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { connectMongoDB } from '@/lib/mongodb';
 
 export default function LoginForm() {
 	const [email, setEmail] = useState('');
@@ -15,6 +16,8 @@ export default function LoginForm() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		connectMongoDB();
 
 		try {
 			const res = await signIn('credentials', {
