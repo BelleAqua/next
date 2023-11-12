@@ -35,6 +35,21 @@ export default async function RootLayout({ children }) {
 									<img className="icon" src="/logos/belleaqua.png" />
 								</a>
 							</div>
+
+							{session.user.company == 'BelleAqua' && (
+								<div id="shortcuts">
+									<a href="https://app.robaws.com" target="_blank">
+										Robaws
+									</a>
+									<a href="http://192.168.0.3" target="_blank">
+										CMR
+									</a>
+									<a href="http://remote.belleaqua.be:8081" target="_blank">
+										Alert
+									</a>
+								</div>
+							)}
+
 							<div id="tools" className="header-flex">
 								{session.user.role == 'admin' && (
 									<a title="Manage" href="/manage">

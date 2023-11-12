@@ -24,6 +24,11 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		access: {
+			type: [String],
+			required: false,
+			default: [],
+		},
 	},
 	{ timestamps: true }
 );

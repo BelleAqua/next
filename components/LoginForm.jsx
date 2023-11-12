@@ -39,11 +39,11 @@ export default function LoginForm() {
 	};
 
 	return (
-		<div className="grid place-items-center h-screen ">
+		<div className="grid place-items-center h-screen">
 			<div className="component">
 				<h1 className="text-xl font-bold my-4">Login</h1>
 
-				<form onSubmit={handleSubmit} className="gap-3 ">
+				<form onSubmit={handleSubmit} className="gap-3">
 					<input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
 					<br></br>
 					<input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />

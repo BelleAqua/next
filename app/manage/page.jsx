@@ -1,22 +1,29 @@
 /** @format */
 
+'use client';
+
+import RegisterForm from '@/components/RegisterForm';
+import UserList from '@/components/UserList';
+import { useState } from 'react';
+
 export default function Dashboard() {
-	// console.log(
-	// 	fetch('api/users', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 	})
-	// );
+	const [register, setRegister] = useState(false);
+
+	function showRegister() {
+		if (!register) setRegister(true);
+		else setRegister(false);
+	}
 
 	return (
 		<>
-			<div id="new" hidden>
-				<button>New</button>
-				<input></input>
+			<div id="new">
+				<button className="btn" onClick={showRegister}>
+					{register ? 'Cancel' : 'New'}
+				</button>
+				{!register && <input placeholder="search"></input>}
 			</div>
-			<div id="overview">soon</div>
+			{!register && <UserList />}
+			{register && <RegisterForm />}
 		</>
 	);
 }
