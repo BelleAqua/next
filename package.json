@@ -2,7 +2,7 @@
 	"name": "app",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "next dev",
+		"dev": "npm i && start http://localhost:3000 && next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -12,6 +12,7 @@
 		"bcryptjs": "^2.4.3",
 		"eslint": "8.46.0",
 		"eslint-config-next": "13.4.12",
+		"mongodb-client-encryption": "^2.9.1",
 		"mongoose": "^7.4.1",
 		"next": "13.4.12",
 		"next-auth": "^4.22.3",
