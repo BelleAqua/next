@@ -20,6 +20,8 @@ export default async function RootLayout({ children }) {
 
 	if (!session && children.props.childProp.segment !== 'login') redirect('/login');
 
+	const home = children.props.childProp.segment == '__PAGE__';
+
 	return (
 		<html lang="en">
 			<head>
@@ -37,15 +39,15 @@ export default async function RootLayout({ children }) {
 							</div>
 
 							{session.user.company == 'BelleAqua' && (
-								<div id="shortcuts">
+								<div id="shortcuts" className="header-flex">
 									<a href="https://app.robaws.com" target="_blank">
-										Robaws
+										<img className="icon" src="/icons/robaws.png" />
 									</a>
 									<a href="http://192.168.0.3" target="_blank">
-										CMR
+										<img className="icon" src="/icons/siemens.png" />
 									</a>
 									<a href="http://remote.belleaqua.be:8081" target="_blank">
-										Alert
+										<img className="icon" src="/favicon.png" />
 									</a>
 								</div>
 							)}
@@ -59,9 +61,11 @@ export default async function RootLayout({ children }) {
 								<a href="/account">
 									<img title="Account" className="icon" src="/icons/account.png" />
 								</a>
-								<a title="Home" href=".">
-									<img className="icon" src="/icons/home.png" />
-								</a>
+								{!home && (
+									<a title="Home" href="/">
+										<img className="icon" src="/icons/home.png" />
+									</a>
+								)}
 							</div>
 						</header>
 					)}

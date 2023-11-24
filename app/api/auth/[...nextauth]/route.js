@@ -53,6 +53,7 @@ export const authOptions = {
 
 			session.user.company = user.company;
 			session.user.role = user.role;
+			session.user.access = user.access;
 
 			return session;
 		},

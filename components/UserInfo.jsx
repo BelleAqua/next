@@ -22,8 +22,15 @@ export default function UserInfo() {
 				<p>
 					Role: <span className="data">{session?.user.role}</span>
 				</p>
+				<p>
+					Access: <span className="data">{session?.user.access?.join(', ')}</span>
+				</p>
 				<button className="btn warning" onClick={() => signOut()}>
 					Log Out
+				</button>
+
+				<button className="btn warning" onClick={() => true}>
+					Change password
 				</button>
 			</div>
 		</div>
