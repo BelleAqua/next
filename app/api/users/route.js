@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST() {
 	try {
-		await connectMongoDB();
+		await connectMongoDB('users');
 		const user = await User.find();
 		return NextResponse.json(user);
 	} catch (error) {

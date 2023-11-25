@@ -6,7 +6,7 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 
-connectMongoDB();
+connectMongoDB('auth').catch(console.error);
 
 export const authOptions = {
 	providers: [
@@ -18,7 +18,7 @@ export const authOptions = {
 				const { email, password } = credentials;
 
 				try {
-					await connectMongoDB().catch(console.error);
+					await connectMongoDB('auth').catch(console.error);
 					const user = await User.findOne({ email });
 
 					if (!user) {
