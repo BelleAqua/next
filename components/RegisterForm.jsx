@@ -2,7 +2,8 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function RegisterForm() {
 	const [name, setName] = useState('');

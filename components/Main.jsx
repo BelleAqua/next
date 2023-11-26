@@ -2,52 +2,55 @@
 
 'use client';
 
-import { useSession } from 'next-auth/react';
+import validate from '@/models/validate';
 
 export default function Main() {
-	const { data: session } = useSession();
-
 	return (
 		<>
 			<div>
-				<h1>Mobiele installaties</h1>
+				{validate('BelleAqua', 'Aclima') && <h1>Mobiele installaties</h1>}
 				<div className="flex">
-					{(['BelleAqua'].includes(session?.user?.company) || session?.user.access.includes('Aclima')) && (
-						<a href="">
-							<div className="tile">Aclima</div>
+					{validate('BelleAqua', 'Aclima') && (
+						<a href="/mobiel/aclima">
+							<div className="tile background" id="aclima"></div>
 						</a>
 					)}
 				</div>
 			</div>
 			<div>
-				<h1>Checklists</h1>
+				{validate('BelleAqua', 'HydrTechnic', 'Aquafin', 'Pidpa') && <h1>Checklists</h1>}
 				<div className="flex">
-					{['BelleAqua', 'Aquafin'].includes(session?.user?.company) && (
+					{validate('BelleAqua', 'HydroTechnic', 'Aquafin', 'Pidpa') && (
 						<a href="/checklist/besturingskast">
 							<div className="tile">Besturingskasten</div>
 						</a>
 					)}
-					{['BelleAqua'].includes(session?.user?.company) && (
+					{validate('BelleAqua') && (
 						<a href="">
 							<div className="tile">Alert</div>
+						</a>
+					)}
+					{validate('BelleAqua') && (
+						<a href="">
+							<div className="tile">Robaws</div>
 						</a>
 					)}
 				</div>
 			</div>
 			<div>
-				<h1>Tutorials</h1>
+				{validate('BelleAqua') && <h1>Tutorials</h1>}
 				<div className="flex">
-					{['BelleAqua'].includes(session?.user?.company) && (
+					{validate('BelleAqua') && (
 						<a href="">
 							<div className="tile">Logo netwerk aanpassen</div>
 						</a>
 					)}
-					{['BelleAqua'].includes(session?.user?.company) && (
+					{validate('BelleAqua') && (
 						<a href="">
 							<div className="tile">Logo klok aanpassen</div>
 						</a>
 					)}
-					{['BelleAqua'].includes(session?.user?.company) && (
+					{validate('BelleAqua') && (
 						<a href="">
 							<div className="tile">Logo tijd aanpassen</div>
 						</a>
@@ -55,14 +58,9 @@ export default function Main() {
 				</div>
 			</div>
 			<div>
-				<h1>Tools</h1>
+				{validate('BelleAqua') && <h1>Tools</h1>}
 				<div className="flex">
-					{['BelleAqua'].includes(session?.user?.company) && (
-						<a href="">
-							<div className="tile">Robaws</div>
-						</a>
-					)}
-					{['BelleAqua'].includes(session?.user?.company) && (
+					{validate('BelleAqua') && (
 						<a href="">
 							<div className="tile">Image Renamer</div>
 						</a>

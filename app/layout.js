@@ -39,7 +39,7 @@ export default async function RootLayout({ children }) {
 							</div>
 
 							{session.user.company == 'BelleAqua' && (
-								<div id="shortcuts" className="header-flex">
+								<div id="shortcuts" className="header-flex none">
 									<a href="https://app.robaws.com" target="_blank">
 										<img className="icon" src="/icons/robaws.png" />
 									</a>
@@ -52,7 +52,7 @@ export default async function RootLayout({ children }) {
 								</div>
 							)}
 
-							<div id="tools" className="header-flex">
+							<div id="tools" className="header-flex" style={{ filter: 'invert(1)' }}>
 								{session.user.role == 'admin' && (
 									<a title="Manage" href="/manage">
 										<img className="icon" src="/icons/admin.png" />
