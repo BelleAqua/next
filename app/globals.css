@@ -85,6 +85,15 @@ input {
 	width: 25%;
 }
 
+.tab {
+	border-bottom: 1px solid black;
+	border-top-right-radius: 0.5rem;
+	border-top-left-radius: 0.5rem;
+	padding-left: 5px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
 .warning {
 	background-color: rgba(255, 50, 50);
 	color: var(--background-color);
@@ -113,9 +122,28 @@ input {
 	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
+.tab:hover,
 .selected,
 .tile:hover {
 	background-color: var(--hover);
+}
+
+.checked {
+	background-color: rgb(204, 205, 0);
+}
+
+.checkbox {
+	padding: 2px;
+}
+
+.checkbox:hover {
+	background-color: rgba(0, 255, 0, 0.3);
+	cursor: pointer;
+}
+
+.checked:hover {
+	background-color: rgba(255, 0, 0, 0.3);
+	cursor: pointer;
 }
 
 table {
@@ -151,6 +179,21 @@ th {
 
 #aclima {
 	background-image: url('/logos/aclima.png');
+}
+
+#dock {
+	position: fixed;
+	display: flex;
+	justify-self: center;
+	justify-content: center;
+	background-color: #374151;
+	bottom: 0;
+	border-radius: 0.5rem;
+	padding: 10px;
+	z-index: 1;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 768px) {

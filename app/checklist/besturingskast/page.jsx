@@ -3,62 +3,39 @@
 'use client';
 
 import validate from '@/models/validate';
+import ChecklistAquafin from '@/components/ChecklistAquafin';
+import ChecklistBelleAqua from '@/components/ChecklistBelleAqua';
 
 export default function Kasten() {
-	function openTile(event) {
+	function openTile(event, name) {
 		const tiles = document.getElementsByClassName('tile');
 
 		for (const tile of tiles) {
-			tile.classList.remove('selected');
+			if (tile.classList.contains(name)) tile.classList.remove('selected');
 		}
 
-		const components = document.getElementsByClassName('component');
-
-		for (const component of components) {
+		for (const child of event.target.parentElement.children) {
+			const component = document.getElementById(`${child.id}-data`);
 			component.classList.add('hidden');
 		}
 
-		event.target.classList.toggle('selected');
+		event.target.classList.add('selected');
 
-		document.getElementById(`${event.target.id}-data`).classList.toggle('hidden');
-	}
-
-	function openTab(event, id) {
-		const tabs = document.getElementsByClassName('tabcontent');
-		const components = document.getElementsByClassName('tabbutton');
-
-		const tab = document.getElementById(id);
-
-		for (const component of components) {
-			component.classList.remove('tab-active');
-		}
-
-		for (const tab of tabs) {
-			tab.classList.remove('active');
-		}
-
-		event.target.classList.add('tab-active');
-
-		tab.classList.add('active');
+		document.getElementById(`${event.target.id}-data`)?.classList.toggle('hidden');
 	}
 
 	return (
 		<>
 			<div className="flex">
-				{validate('Aquafin', 'BelleAqua') && <div onClick={openTile} className="tile background" id="aquafin"></div>}
-				{validate('BelleAqua') && <div onClick={openTile} className="tile background" id="belleaqua"></div>}
-				{validate('HydroTechnic', 'BelleAqua') && <div onClick={openTile} className="tile background" id="hydrotechnic"></div>}
-				{validate('Pidpa', 'BelleAqua') && <div onClick={openTile} className="tile background" id="pidpa"></div>}
+				{validate('Aquafin', 'BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="aquafin"></div>}
+				{validate('BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="belleaqua"></div>}
+				{validate('HydroTechnic', 'BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="hydrotechnic"></div>}
+				{validate('Pidpa', 'BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="pidpa"></div>}
 			</div>
-			{validate('Aquafin', 'BelleAqua') && (
-				<div id="aquafin-data" className="hidden component">
-					<div>Axylit</div>
-					<div>SAF mTele</div>
-					<div>KEBRO</div>
-				</div>
-			)}
 
-			{validate('BelleAqua', 'BelleAqua') && <div id="belleaqua-data" className="hidden component"></div>}
+			<ChecklistAquafin />
+
+			<ChecklistBelleAqua />
 
 			{validate('HydroTechnic', 'BelleAqua') && <div id="hydrotechnic-data" className="hidden component"></div>}
 

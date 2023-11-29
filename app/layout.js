@@ -38,20 +38,6 @@ export default async function RootLayout({ children }) {
 								</a>
 							</div>
 
-							{session.user.company == 'BelleAqua' && (
-								<div id="shortcuts" className="header-flex none">
-									<a href="https://app.robaws.com" target="_blank">
-										<img className="icon" src="/icons/robaws.png" />
-									</a>
-									<a href="http://192.168.0.3" target="_blank">
-										<img className="icon" src="/icons/siemens.png" />
-									</a>
-									<a href="http://remote.belleaqua.be:8081" target="_blank">
-										<img className="icon" src="/favicon.png" />
-									</a>
-								</div>
-							)}
-
 							<div id="tools" className="header-flex" style={{ filter: 'invert(1)' }}>
 								{session.user.role == 'admin' && (
 									<a title="Manage" href="/manage">
@@ -70,6 +56,25 @@ export default async function RootLayout({ children }) {
 						</header>
 					)}
 					<main>{children}</main>
+					{session.user.company == 'BelleAqua' && (
+						<footer>
+							<div id="dock">
+								(
+								<div id="shortcuts" className="header-flex none">
+									<a href="https://app.robaws.com" target="_blank">
+										<img className="icon" src="/icons/robaws.png" />
+									</a>
+									<a href="http://192.168.0.3" target="_blank">
+										<img className="icon" src="/icons/siemens.png" />
+									</a>
+									<a href="http://remote.belleaqua.be:8081" target="_blank">
+										<img className="icon" src="/favicon.png" />
+									</a>
+								</div>
+								)
+							</div>
+						</footer>
+					)}
 				</AuthProvider>
 			</body>
 		</html>
