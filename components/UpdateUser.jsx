@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function updateUser(data) {
+export default function UpdateUser(data) {
 	const [name, setName] = useState('');
 	const [lastname, setLastname] = useState('');
 	const [password, setPassword] = useState('');
