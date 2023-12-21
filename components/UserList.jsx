@@ -1,5 +1,6 @@
 /** @format */
 
+// import User from '@/models/user';
 import { useState } from 'react';
 
 export default function UserList() {
@@ -12,9 +13,17 @@ export default function UserList() {
 			cache: 'no-store',
 		})
 			.then((res) => res.json())
-			.catch(console.error);
+			.catch(() => true);
 
-		setUsers(users);
+		if (Array.isArray(users)) setUsers(users);
+	}
+
+	async function deleteUser(event) {
+		const consent = confirm(`Weet je zeker dat je ${event.target.id} wilt verwijderen?`);
+
+		if (consent) {
+			// await User.deleteOne({ email: event.target.id });
+		}
 	}
 
 	if (!users.length) loadUsers();
@@ -29,6 +38,8 @@ export default function UserList() {
 					<th>Bedrijf</th>
 					<th>Rol</th>
 					<th>Toegang</th>
+					<th>Laatste aanmelding</th>
+					<th>tools</th>
 				</tr>
 				{users?.map((user) => (
 					<tr key={user._id}>
@@ -37,6 +48,13 @@ export default function UserList() {
 						<td>{user.company}</td>
 						<td>{user.role}</td>
 						<td>{user.access.join(', ')}</td>
+						<td>{user?.seen ? new Date(user?.seen)?.toDateString() : ''}</td>
+						<td>
+							<button>✒️</button>
+							<button id={user.email} onClick={deleteUser}>
+								✖️
+							</button>
+						</td>
 					</tr>
 				))}
 			</table>

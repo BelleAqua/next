@@ -3,7 +3,7 @@
 'use client';
 
 import validate from '@/models/validate';
-import ChecklistAquafin from '@/components/ChecklistAquafin';
+import Line from '@/components/Line';
 import ChecklistBelleAqua from '@/components/ChecklistBelleAqua';
 
 export default function Kasten() {
@@ -26,7 +26,7 @@ export default function Kasten() {
 
 	return (
 		<>
-			<div className="flex">
+			{/* <div className="flex">
 				{validate('Aquafin', 'BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="aquafin"></div>}
 				{validate('BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="belleaqua"></div>}
 				{validate('HydroTechnic', 'BelleAqua') && <div onClick={(event) => openTile(event, 'company')} className="tile background company" id="hydrotechnic"></div>}
@@ -39,7 +39,46 @@ export default function Kasten() {
 
 			{validate('HydroTechnic', 'BelleAqua') && <div id="hydrotechnic-data" className="hidden component"></div>}
 
-			{validate('Pidpa', 'BelleAqua') && <div id="pidpa-data" className="hidden component"></div>}
+			{validate('Pidpa', 'BelleAqua') && <div id="pidpa-data" className="hidden component"></div>} */}
+			<div>
+				<img src="/logos/aquafin.png" alt="" className="banner" />
+				<Line />
+				<div className="flex">
+					<div className="tile">axylit</div>
+					<div className="tile">saf mtele</div>
+					<div className="tile">kebro</div>
+				</div>
+			</div>
+			<div>
+				<img src="/logos/belleaqua.png" alt="" className="banner" />
+				<Line />
+				<div className="flex">
+					<div className="tile">axylit</div>
+					<div className="tile">saf mtele</div>
+					<div className="tile">saf mtele mpp</div>
+					<div className="tile">saf ztele</div>
+				</div>
+			</div>
+			<div>
+				<img src="/logos/hydrotechnic.png" alt="" className="banner" />
+				<Line />
+				<div className="flex">
+					<div className="tile">axylit</div>
+					<div className="tile">saf ztele</div>
+					<div className="tile">saf ztele mpp</div>
+					<div className="tile">kokosbiobed</div>
+					<div className="tile">oxyfix</div>
+				</div>
+			</div>
+			<div>
+				<img src="/logos/pidpa.png" alt="" className="banner" />
+				<Line />
+				<div className="flex">
+					<div className="tile">axylit</div>
+					<div className="tile">saf ztele</div>
+					<div className="tile">verkaveling</div>
+				</div>
+			</div>
 		</>
 	);
 }

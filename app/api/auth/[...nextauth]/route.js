@@ -54,6 +54,10 @@ export const authOptions = {
 			session.user.company = user.company;
 			session.user.role = user.role;
 			session.user.access = user.access;
+			session.user.seen = user.seen;
+			session.user.lastname = user.lastname;
+
+			await User.updateOne({ email: session.user.email }, { seen: new Date() });
 
 			return session;
 		},

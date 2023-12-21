@@ -8,6 +8,9 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		lastname: {
+			type: String,
+		},
 		email: {
 			type: String,
 			required: true,
@@ -28,6 +31,9 @@ const userSchema = new Schema(
 			type: [String],
 			required: false,
 			default: [],
+		},
+		seen: {
+			type: Date,
 		},
 	},
 	{ timestamps: true }

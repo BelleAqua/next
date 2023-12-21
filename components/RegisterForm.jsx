@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 export default function RegisterForm() {
 	const [name, setName] = useState('');
+	const [lastname, setLastname] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [company, setCompany] = useState('');
@@ -46,6 +47,7 @@ export default function RegisterForm() {
 				},
 				body: JSON.stringify({
 					name,
+					lastname,
 					email,
 					password,
 					company,
@@ -72,7 +74,9 @@ export default function RegisterForm() {
 				<h1 className="text-xl font-bold my-4">Register</h1>
 
 				<form onSubmit={handleSubmit} className="gap-3">
-					<input onChange={(e) => setName(e.target.value)} type="text" placeholder="Full Name" />
+					<input onChange={(e) => setName(e.target.value)} type="text" placeholder="Name" />
+					<br></br>
+					<input onChange={(e) => setLastname(e.target.value)} type="text" placeholder="Last Name" />
 					<br></br>
 					<input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
 					<br></br>

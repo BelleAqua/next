@@ -31,13 +31,10 @@ export default function ChecklistBelleAqua() {
 
 		event.target.classList.add('selected');
 
-		for (const item of document.getElementById('items').children) {
+		for (const item of document.getElementById('belleaqua-items').children) {
 			item.classList.add('hidden');
 
-			if (event.target.innerText.toLowerCase() == item.id) {
-				console.log(item?.classList.remove('hidden'));
-				item?.classList.remove('hidden');
-			}
+			if (event.target.id == `${item.id}-button`) item?.classList.remove('hidden');
 		}
 	}
 
@@ -46,8 +43,10 @@ export default function ChecklistBelleAqua() {
 	}
 
 	function reset() {
-		for (const child of document.getElementById('checklist').children) {
-			child.classList.remove('checked');
+		for (const div of document.getElementsByClassName('checklist')) {
+			for (const child of div.children) {
+				child.classList.remove('checked');
+			}
 		}
 	}
 
@@ -72,24 +71,24 @@ export default function ChecklistBelleAqua() {
 			</div>
 			<div className="component" id="ba-data">
 				<div className="toolbar flex">
-					<div className="tab selected" onClick={openId}>
+					<div id="checklist-button" className="tab selected" onClick={openId}>
 						Checklist
 					</div>
-					<div className="tab" onClick={openId}>
+					<div id="cmr-button" className="tab" onClick={openId}>
 						CMR
 					</div>
-					<div className="tab" onClick={openId}>
+					<div id="logo-button" className="tab" onClick={openId}>
 						Logo
 					</div>
-					<div className="tab" onClick={openId}>
+					<div id="schema-button" className="tab" onClick={openId}>
 						Schema
 					</div>
-					<div className="tab" onClick={reset}>
+					<div id="reset-button" className="tab" onClick={reset}>
 						Reset
 					</div>
 				</div>
-				<div id="items">
-					<div className="" id="checklist">
+				<div id="belleaqua-items">
+					<div className="checklist" id="checklist">
 						<div onClick={check} className="checkbox"></div>
 						checklist
 					</div>

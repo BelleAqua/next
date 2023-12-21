@@ -11,19 +11,26 @@ export default function UserInfo() {
 		<div>
 			<div id="account">
 				<p>
-					Name: <span className="data">{session?.user.name}</span>
+					Voornaam: <span className="data">{session?.user.name}</span>
+				</p>
+				<p>
+					Achternaam: <span className="data">{session?.user.lastname}</span>
 				</p>
 				<p>
 					E-mail: <span className="data">{session?.user.email}</span>
 				</p>
 				<p>
-					Company: <span className="data">{session?.user.company}</span>
+					Bedrijf: <span className="data">{session?.user.company}</span>
 				</p>
 				<p>
-					Role: <span className="data">{session?.user.role}</span>
+					Rol: <span className="data">{session?.user.role}</span>
 				</p>
 				<p>
-					Access: <span className="data">{session?.user.access?.join(', ')}</span>
+					Toegang: <span className="data">{session?.user.access?.join(', ')}</span>
+				</p>
+
+				<p>
+					Laaste aanmelding: <span className="data">{session?.user.seen ? new Date(session?.user.seen).toDateString() : ''}</span>
 				</p>
 				<button className="btn warning" onClick={() => signOut()}>
 					Log Out
