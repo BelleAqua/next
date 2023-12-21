@@ -3,12 +3,20 @@
 'use client';
 
 import validate from '@/models/validate';
+import { useSession } from 'next-auth/react';
 
 export default function Main() {
+	const time = new Date().toLocaleTimeString().split(':')[0];
+
+	const { data: session } = useSession();
+
 	return (
 		<>
+			<h1>
+				{time >= 18 ? 'Goedeavond' : time >= 12 ? 'Goedemiddag' : time >= 6 ? 'Goedemorgen' : 'Goedenacht'} {session?.user?.name}
+			</h1>
 			<div>
-				{validate('BelleAqua', 'Aclima') && <h1>Mobiele installaties</h1>}
+				{validate('BelleAqua', 'Aclima') && <h2>Mobiele installaties</h2>}
 				<div className="flex">
 					{validate('BelleAqua', 'Aclima') && (
 						<a href="/mobiel/aclima">
@@ -18,7 +26,7 @@ export default function Main() {
 				</div>
 			</div>
 			<div>
-				{validate('BelleAqua', 'HydrTechnic', 'Aquafin', 'Pidpa') && <h1>Checklists</h1>}
+				{validate('BelleAqua', 'HydrTechnic', 'Aquafin', 'Pidpa') && <h2>Checklists</h2>}
 				<div className="flex">
 					{validate('BelleAqua', 'HydroTechnic', 'Aquafin', 'Pidpa') && (
 						<a href="/checklist/besturingskast">
@@ -38,7 +46,7 @@ export default function Main() {
 				</div>
 			</div>
 			<div>
-				{validate('BelleAqua') && <h1>Tutorials</h1>}
+				{validate('BelleAqua') && <h2>Tutorials</h2>}
 				<div className="flex">
 					{validate('BelleAqua') && (
 						<a href="">
@@ -58,7 +66,7 @@ export default function Main() {
 				</div>
 			</div>
 			<div>
-				{validate('BelleAqua') && <h1>Tools</h1>}
+				{validate('BelleAqua') && <h2>Tools</h2>}
 				<div className="flex">
 					{validate('BelleAqua') && (
 						<a href="">

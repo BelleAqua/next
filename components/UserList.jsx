@@ -2,9 +2,12 @@
 
 // import User from '@/models/user';
 import { useState } from 'react';
+import UpdateUser from '@/components/UpdateUser';
 
 export default function UserList() {
 	const [users, setUsers] = useState([]);
+	const [update, setUpdate] = useState(false);
+	const [user, setUser] = useState('');
 
 	async function loadUsers() {
 		const users = await fetch('/api/users', {
@@ -22,7 +25,23 @@ export default function UserList() {
 		const consent = confirm(`Weet je zeker dat je ${event.target.id} wilt verwijderen?`);
 
 		if (consent) {
-			// await User.deleteOne({ email: event.target.id });
+			await fetch('/api/deleteUser', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				cache: 'no-store',
+				body: JSON.stringify({ email: event.target.id }),
+			})
+				.then((res) => res.json())
+				.catch(() => true);
+		}
+	}
+
+	async function updateUser(event) {
+		setUpdate(false);
+
+		if (!update) {
+			setUser(event.target.id);
+			setUpdate(true);
 		}
 	}
 
@@ -30,27 +49,30 @@ export default function UserList() {
 
 	return (
 		<>
-			<h1>Users</h1>
+			<h1>Gebruikers</h1>
 			<table>
 				<tr>
 					<th>Naam</th>
+					<th className="hiddenOnMobile">Achternaam</th>
 					<th>email</th>
-					<th>Bedrijf</th>
-					<th>Rol</th>
-					<th>Toegang</th>
-					<th>Laatste aanmelding</th>
-					<th>tools</th>
+					<th className="hiddenOnMobile">Bedrijf</th>
+					<th className="hiddenOnMobile">Rol</th>
+					<th className="hiddenOnMobile">Toegang</th>
+					<th className="hiddenOnMobile">Laatste aanmelding</th>
 				</tr>
 				{users?.map((user) => (
 					<tr key={user._id}>
 						<td>{user.name}</td>
+						<td className="hiddenOnMobile">{user.lastname}</td>
 						<td>{user.email}</td>
-						<td>{user.company}</td>
-						<td>{user.role}</td>
-						<td>{user.access.join(', ')}</td>
-						<td>{user?.seen ? new Date(user?.seen)?.toDateString() : ''}</td>
-						<td>
-							<button>✒️</button>
+						<td className="hiddenOnMobile">{user.company}</td>
+						<td className="hiddenOnMobile">{user.role}</td>
+						<td className="hiddenOnMobile">{user.access.join(', ')}</td>
+						<td className="hiddenOnMobile">{user?.seen ? new Date(user?.seen)?.toDateString() : ''}</td>
+						<td className="">
+							<button id={user.email} onClick={updateUser}>
+								✒️
+							</button>
 							<button id={user.email} onClick={deleteUser}>
 								✖️
 							</button>
@@ -58,6 +80,8 @@ export default function UserList() {
 					</tr>
 				))}
 			</table>
+
+			{update && <UpdateUser data={user} />}
 		</>
 	);
 }

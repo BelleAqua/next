@@ -60,14 +60,14 @@ export default async function RootLayout({ children }) {
 						<footer>
 							<div id="dock">
 								(
-								<div id="shortcuts" className="header-flex none">
+								<div id="shortcuts" className="header-flex">
 									<a href="https://app.robaws.com" target="_blank">
 										<img className="icon" src="/icons/robaws.png" />
 									</a>
 									<a href="http://192.168.0.3" target="_blank">
 										<img className="icon" src="/icons/siemens.png" />
 									</a>
-									<a href="http://remote.belleaqua.be:8081" target="_blank">
+									<a href="http://alert.hydrotechnic.be:8082" target="_blank">
 										<img className="icon" src="/favicon.png" />
 									</a>
 								</div>

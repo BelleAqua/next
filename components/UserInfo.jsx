@@ -3,9 +3,16 @@
 'use client';
 
 import { signOut, useSession } from 'next-auth/react';
+import { useState } from 'react';
+import UpdatePassword from '@/components/UpdatePassword';
 
 export default function UserInfo() {
 	const { data: session } = useSession();
+	const [newPW, setNewPW] = useState(false);
+
+	async function changePassword() {
+		setNewPW(!newPW);
+	}
 
 	return (
 		<div>
@@ -32,13 +39,15 @@ export default function UserInfo() {
 				<p>
 					Laaste aanmelding: <span className="data">{session?.user.seen ? new Date(session?.user.seen).toDateString() : ''}</span>
 				</p>
-				<button className="btn warning" onClick={() => signOut()}>
+				<button className="btn warning" onClick={signOut}>
 					Log Out
 				</button>
 
-				<button className="btn warning" onClick={() => true}>
+				<button className="btn warning" onClick={changePassword}>
 					Change password
 				</button>
+
+				{newPW && <UpdatePassword data={session?.user?.email} />}
 			</div>
 		</div>
 	);
