@@ -1,6 +1,6 @@
 /** @format */
 
-export default function Main() {
+export default function Line() {
 	return (
 		<>
 			<div className="line"></div>
